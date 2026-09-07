@@ -10,7 +10,7 @@ The agent solves multi-hop questions from [HotpotQA](https://arxiv.org/abs/1809.
 - **Evaluation:** 150 questions  
 - **Hardware:** T4 GPU with 4-bit quantization
 
-This is a small-scale personal research project. The implementation is the main focus; the current evaluation is intentionally limited to 150 questions.
+This is a small-scale personal research project and the current evaluation is intentionally limited to 150 questions.
 
 ---
 
