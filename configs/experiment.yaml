@@ -1,18 +1,27 @@
+project: ReAct_Multi-Hop-Reasoning
+
 dataset:
   name: hotpotqa/hotpot_qa
   config: distractor
   split: validation
-  sample_size: 150
+  n_questions: 150
   seed: 42
+  sampling: random_from_full_validation_set
 
-react:
+agent:
   model: Qwen/Qwen2.5-7B-Instruct
+  quantization: 4bit_nf4
   max_hops: 7
   retry_badcalls: false
   temperature: 0.0
-  quantization: 4bit
 
-judge:
+actions:
+  - Search
+  - Lookup
+  - Finish
+
+external_verification:
   model: mistralai/Mistral-7B-Instruct-v0.3
   mode: supported_check
   max_new_tokens: 250
+  timing: post_hoc
