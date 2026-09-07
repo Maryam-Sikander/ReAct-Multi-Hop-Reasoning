@@ -7,7 +7,6 @@ The agent solves multi-hop questions from [HotpotQA](https://arxiv.org/abs/1809.
 - **Agent:** Qwen2.5-7B-Instruct  
 - **Judge:** Mistral-7B-Instruct-v0.3  
 - **Dataset:** HotpotQA  
-- **Evaluation:** 150 questions  
 - **Hardware:** T4 GPU with 4-bit quantization
 
 This is a small-scale personal research project and the current evaluation is intentionally limited to 150 questions.
@@ -17,6 +16,8 @@ This is a small-scale personal research project and the current evaluation is in
 ## Overview
 
 The baseline uses a standard [ReAct](https://arxiv.org/abs/2210.03629) loop and then the modified version adds an external judge inside the loop:
+![alt text](results/figures/diagram.png)
+
 
 ##Motivation
 
@@ -87,7 +88,14 @@ Ran both versions on the same fixed sample of 150 HotpotQA questions.
 - Wikipedia tools
 ## Results
 The judge version was more accurate when it successfully produced an answer, but it also failed to produce an answer much more often.
-# image
+
+|  | Baseline ReAct | Judge |
+| :--- | ---: | ---: |
+| Coverage | 80.0% | 35.3% |
+| Conditional Accuracy | 31.7% | 47.2% |
+| Overall Accuracy | 25.3% | 16.7% |
+
+![alt text](results\figures\coverage_accuracy.png)
 
 The main reason turned out to be parse errors.
 **Parse Errors:** There were 42 parse errors in the judge condition. All 42 occurred immediately after a judge CONTINUE decision. This pointed to a problem in how the judge feedback was being added to the next ReAct prompt.
