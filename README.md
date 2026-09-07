@@ -1,6 +1,6 @@
 # ReAct Multi-Hop Reasoning with a Mid-Loop LLM Judge
 
-This project explores whether an external LLM can help a ReAct agent make better decisions while it is still reasoning.
+This project explores whether an external LLM can help a [ReAct](https://arxiv.org/html/2210.03629v3) agent make better decisions while it is still reasoning.
 
 The agent solves multi-hop questions from [HotpotQA](https://arxiv.org/abs/1809.09600) using Wikipedia as its external knowledge source. After each tool-use step, a second LLM looks at the trajectory and decides whether the agent should continue searching or whether it has enough evidence to answer.
 
