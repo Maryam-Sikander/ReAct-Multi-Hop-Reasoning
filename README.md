@@ -106,6 +106,11 @@ The judge version was more accurate when it successfully produced an answer, but
 
 The main reason turned out to be parse errors.
 **Parse Errors:** There were 42 parse errors in the judge condition. All 42 occurred immediately after a judge CONTINUE decision. This pointed to a problem in how the judge feedback was being added to the next ReAct prompt.
+## Key Findings
+- **Mid-loop judging improved conditional accuracy**: when the judge allowed the agent to produce an answer, accuracy was 47.2%, compared with 31.7% for the baseline.
+- **Judge coverage was much lower**: the judged agent produced usable final answers for only 35.3% of questions, compared with 80.0% for the baseline.
+- **Overall accuracy decreased**: because of the reduced coverage, the judge system achieved 16.7% overall accuracy, compared with 25.3% for the baseline.
+- **Main implementation failure was parsing**: There were 42 judge-condition parse errors and all 42 occurred immediately after a CONTINUE decision.
 
 ## Setup
 
