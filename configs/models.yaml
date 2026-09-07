@@ -1,10 +1,18 @@
-models:
-  gemini:
-    id: "gemini-3.7-flash"
-    temperature: 0.0
-    max_output_tokens: 512
+dataset:
+  name: hotpotqa/hotpot_qa
+  config: distractor
+  split: validation
+  sample_size: 150
+  seed: 42
 
-run:
+react:
+  model: Qwen/Qwen2.5-7B-Instruct
   max_hops: 7
-  retry_attempts: 4
-  retry_backoff_s: 5
+  retry_badcalls: false
+  temperature: 0.0
+  quantization: 4bit
+
+judge:
+  model: mistralai/Mistral-7B-Instruct-v0.3
+  mode: supported_check
+  max_new_tokens: 250

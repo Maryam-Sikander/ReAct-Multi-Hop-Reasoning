@@ -33,7 +33,7 @@ class TrajectoryResult:
 
 
 class ReActAgent:
-    def __init__(self, llm: LLMClient, max_hops=7):
+    def __init__(self, llm: LLMClient, max_hops=3):
         self.llm = llm
         self.max_hops = max_hops
 

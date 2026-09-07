@@ -4,3 +4,4 @@ pyyaml>=6.0
 tqdm>=4.66
 tiktoken>=0.7
 datasets>=2.19
+google-genai
