@@ -1,9 +1,5 @@
-"""Local Hugging Face model client used by both experiments."""
-
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
-
-
 class LLMResponse:
     def __init__(self, text, prompt_tokens, completion_tokens):
         self.text = text
