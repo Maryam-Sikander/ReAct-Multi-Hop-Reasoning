@@ -100,7 +100,9 @@ The judge version was more accurate when it successfully produced an answer, but
 | Conditional Accuracy | 31.7% | 47.2% |
 | Overall Accuracy | 25.3% | 16.7% |
 
-![alt text](results\figures\coverage_accuracy.png)
+<p align="left">
+  <img src="results\figures\coverage_accuracy.png" alt="results" width="600">
+</p>
 
 The main reason turned out to be parse errors.
 **Parse Errors:** There were 42 parse errors in the judge condition. All 42 occurred immediately after a judge CONTINUE decision. This pointed to a problem in how the judge feedback was being added to the next ReAct prompt.
