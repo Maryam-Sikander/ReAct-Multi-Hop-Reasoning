@@ -16,10 +16,14 @@ This is a small-scale personal research project and the current evaluation is in
 ## Overview
 
 The baseline uses a standard [ReAct](https://arxiv.org/abs/2210.03629) loop and then the modified version adds an external judge inside the loop:
-![alt text](results/figures/diagram.png)
+
+<p align="center">
+  <img src="results/figures/diagram.png" alt="Pipeline" width="600">
+</p>
 
 
-##Motivation
+
+## Motivation
 
 ReAct agents can solve multi-hop questions by repeatedly searching for information, but the agent can also stop with incomplete evidence.
 
@@ -27,9 +31,10 @@ I wanted to test a simple idea:
 
 > Can another model notice that the current trajectory is not sufficient before the agent commits to an answer?
 
-The project is inspired by work on reasoning verification and judging, including [SAFE](https://arxiv.org/abs/2604.01993) and [Rowen](https://arxiv.org/abs/2402.10612)
+The project is inspired by work on reasoning verification and judging, including [SAFE](https://arxiv.org/abs/2604.01993) and [Reasoning Court](https://arxiv.org/abs/2504.09781)
 
 ## Implementation
+
 ### ReAct Agent
 
 The agent follows the usual Thought / Action / Observation format.
