@@ -1,5 +1,3 @@
-"""Prompts used by the ReAct agent and external verifier."""
-
 INSTRUCTIONS = """Answer the question by interleaving numbered Thought, Action, and Observation steps.
 Action is one of three types:
 (1) Search[entity] - looks up the entity on Wikipedia, returns the opening paragraph if it exists, or similar titles if not.
@@ -34,37 +32,29 @@ Action 3: Finish[Oxford]
 def build_prompt(question, trajectory):
     return f"{INSTRUCTIONS}\n\n{FEWSHOT_EXAMPLES}\n\nQuestion: {question}\n{trajectory}"
 
+JUDGE_INSTRUCTIONS = """You are an external judge monitoring a ReAct agent solving a multi-hop question.
 
-SUPPORTED_INSTRUCTIONS = """You are checking whether an answer to a multi-hop question is actually supported by the evidence an agent retrieved, or whether it goes beyond what that evidence shows.
+You will see the question and the agent's trajectory so far.
 
-You will see the question, the agent's full research trajectory (its reasoning, its Wikipedia searches, and what each search returned), and the agent's final answer.
+Determine whether the agent has gathered enough evidence to answer the question.
 
-Judge only whether the final answer is grounded in the observations shown - not whether you personally know it to be true from other knowledge. An answer can be factually correct yet still unsupported by this particular trajectory, if the evidence retrieved doesn't actually establish it.
+If the evidence is insufficient or another reasoning/tool-use step is needed, respond:
 
-Respond in exactly this format:
-Verdict: <SUPPORTED, UNSUPPORTED, or PARTIALLY_SUPPORTED>
-Reason: <one or two sentences>
+Decision: CONTINUE
+Feedback: <briefly state what is missing>
+
+If the evidence is sufficient to answer, respond:
+
+Decision: ANSWER
+Feedback: <briefly explain why the evidence is sufficient>
+
+Do not provide the final answer yourself.
 """
 
 
-def build_supported_check_prompt(question, trajectory_text, agent_answer):
+def build_judge_prompt(question, trajectory):
     return (
-        f"{SUPPORTED_INSTRUCTIONS}\n\n"
+        f"{JUDGE_INSTRUCTIONS}\n\n"
         f"Question: {question}\n\n"
-        f"Agent's trajectory:\n{trajectory_text}\n"
-        f"Agent's final answer: {agent_answer or '(no answer given)'}\n"
+        f"Trajectory so far:\n{trajectory}\n"
     )
-
-
-BLIND_INSTRUCTIONS = """You will see a question and a research trajectory (Wikipedia searches and what they returned) gathered by someone else while trying to answer it. You will NOT be shown their answer.
-
-Based only on the evidence in this trajectory, work out the answer yourself. If the evidence isn't sufficient to answer confidently, say so explicitly rather than guessing.
-
-Respond in exactly this format:
-Answer: <your answer, or "INSUFFICIENT EVIDENCE" if the trajectory doesn't support one>
-Reason: <one or two sentences>
-"""
-
-
-def build_blind_prompt(question, trajectory_text):
-    return f"{BLIND_INSTRUCTIONS}\n\nQuestion: {question}\n\nTrajectory:\n{trajectory_text}\n"

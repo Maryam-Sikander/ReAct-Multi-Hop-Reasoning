@@ -7,7 +7,7 @@ from datasets import load_dataset
 
 from models import HFLocalClient
 from prompts import build_prompt
-from wikipedia_tool import WikiEnv
+from agent_tools import WikiEnv
 
 AGENT_MODEL_ID = "Qwen/Qwen2.5-7B-Instruct"
 MAX_HOPS = 7
