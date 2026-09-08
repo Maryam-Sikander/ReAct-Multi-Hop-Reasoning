@@ -146,7 +146,6 @@ ReAct_Multi-Hop-Questions/
 │       ├── coverage_accuracy.png
         ├── diagram.png
 │       ├── stopped_reason.png
-│       └── parse_error_source.png
 │
 ├── src/
 │   ├── agent_tools.py
