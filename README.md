@@ -17,11 +17,7 @@ This is a small-scale personal research project and the current evaluation is in
 
 The baseline uses a standard [ReAct](https://arxiv.org/abs/2210.03629) loop and then the modified version adds an external judge inside the loop:
 
-<p align="center">
-  <img src="results/figures/diagram.png" alt="Pipeline" width="600">
-</p>
-
-
+![ReAct with Mid-Loop Judge](./results/figures/diagram.png)
 
 ## Motivation
 
@@ -100,9 +96,7 @@ The judge version was more accurate when it successfully produced an answer, but
 | Conditional Accuracy | 31.7% | 47.2% |
 | Overall Accuracy | 25.3% | 16.7% |
 
-<p align="left">
-  <img src="results\figures\coverage_accuracy.png" alt="results" width="600">
-</p>
+![Coverage vs Accuracy](./results/figures/coverage_accuracy.png)
 
 The main reason turned out to be parse errors.
 **Parse Errors:** There were 42 parse errors in the judge condition. All 42 occurred immediately after a judge CONTINUE decision. This pointed to a problem in how the judge feedback was being added to the next ReAct prompt.
